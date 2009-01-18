@@ -18,8 +18,8 @@ contains
     if(present(backwards)) bwards = backwards
     
     if(bwards) then
-       strt = len(haystack)
-       end = start
+       strt = ip
+       end = 1
        step = -1
     else
        strt = start
@@ -40,6 +40,7 @@ contains
     character :: cmd, tmp
     integer :: length
 
+    data = 0
     length = len(program)
     ip = 1
     do
@@ -72,8 +73,6 @@ contains
        end select
 
        ip = ip + 1
-
-       write(*, *) ip
 
        if(ip > length) exit
     end do
