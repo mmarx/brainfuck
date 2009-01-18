@@ -56,7 +56,7 @@ contains
           case('-')
              data(ptr) = data(ptr) - 1
           case('.')
-             write(*, *) char(data(ptr))
+             write(*, fmt='(A)', advance='no') char(data(ptr))
           case(',')
              read(*, *) tmp
              data(ptr) = ichar(tmp)
@@ -76,6 +76,8 @@ contains
 
        if(ip > length) exit
     end do
+
+    write(*, *)
   end subroutine parse
 
 end module mod_brainfuck
