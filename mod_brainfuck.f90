@@ -62,11 +62,13 @@ contains
              data(ptr) = ichar(tmp)
           case('[')
              if(data(ptr) == 0) then
-                ip = next(program, ']', ip + 1)
+                ip = scan(program((ip + 1):length), ']')
+!                ip = next(program, ']', ip + 1)
              end if
           case(']')
              if(data(ptr) /= 0) then
-                ip = next(program, '[', ip, .true.)
+!                ip = next(program, '[', ip, .true.)
+                ip = scan(program(1:ip), '[', .true.)
              end if
           case default
              write(*, *) 'got unknown: ', cmd
