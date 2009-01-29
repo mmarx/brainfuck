@@ -2,3 +2,5 @@
 *.bf~
 *.mod
 brainfuck
+Makefile~
+*.o
