@@ -9,20 +9,18 @@ module mod_brainfuck
   integer :: data_pointer, instruction_pointer, program_length
   
 contains 
-  subroutine init(data_size, program_string)
+  subroutine init(data_size, program_array)
     integer, intent(in) :: data_size
-    character(len=*), intent(in) :: program_string
+    character, dimension(1:), intent(in) :: program_array
 
     integer :: i
 
-    program_length = len(program_string)
+    program_length = ubound(program_array, 1)
 
     allocate(data(1:data_size))
     allocate(program(1:program_length))
 
-    do i = 1, program_length
-       program(i) = program_string(i:i)
-    end do
+    program = program_array
 
     data = 0
     data_pointer = 1
