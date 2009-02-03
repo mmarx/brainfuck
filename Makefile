@@ -1,7 +1,7 @@
 FC=ifort
 LANG=C
-FCFLAGS=-g
-LDFLAGS=
+FCFLAGS=-g -O0
+LDFLAGS=-O0
 
 OBJS=mod_brainfuck.o brainfuck.o
 
