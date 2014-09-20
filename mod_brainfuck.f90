@@ -1,3 +1,19 @@
+! brainfuck interpreter
+! Copyright (C) 2009, 2014 Maximilian Marx
+
+! This program is free software: you can redistribute it and/or modify
+! it under the terms of the GNU General Public License as published by
+! the Free Software Foundation, either version 3 of the License, or
+! (at your option) any later version.
+
+! This program is distributed in the hope that it will be useful,
+! but WITHOUT ANY WARRANTY; without even the implied warranty of
+! MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+! GNU General Public License for more details.
+
+! You should have received a copy of the GNU General Public License
+! along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
 module mod_brainfuck
   implicit none
 
@@ -7,8 +23,8 @@ module mod_brainfuck
   integer, dimension(:), allocatable :: data
   character, dimension(:), allocatable :: program
   integer :: data_pointer, instruction_pointer, program_length
-  
-contains 
+
+contains
   subroutine init(data_size, program_array)
     integer, intent(in) :: data_size
     character, dimension(1:), intent(in) :: program_array
@@ -35,7 +51,7 @@ contains
   subroutine run()
     character :: tmp
     integer :: start
-    
+
     do
        select case(program(instruction_pointer))
        case('<')
@@ -63,7 +79,7 @@ contains
           end if
        case default
        end select
-       
+
        instruction_pointer = instruction_pointer + 1
        if(instruction_pointer > program_length) exit
     end do
