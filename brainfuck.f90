@@ -4,11 +4,19 @@ program brainfuck
   implicit none
 
   integer, parameter :: handle = 42
-  character(len=*), parameter :: filename = 'hello.bf'
+  character(len=255) :: filename
   character, dimension(:), allocatable :: program_array
   integer :: i, length, state
   character :: dummy
 
+  if (command_argument_count() /= 1) then
+     call get_command_argument(0, value=filename)
+     write(*, *) 'brainfuck interpreter'
+     write(*, *) 'usage: ', trim(filename), ' <program-file>'
+     stop
+  end if
+
+  call get_command_argument(1, value=filename)
   length = 0
 
   open(unit=handle, file=filename, iostat=state)
