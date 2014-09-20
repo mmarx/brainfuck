@@ -1,7 +1,6 @@
-FC=ifort
-LANG=C
-FCFLAGS=-g -O0
-LDFLAGS=-O0
+FC = gfortran
+FCFLAGS = -g -std=f2003
+LDFLAGS =
 
 OBJS=mod_brainfuck.o brainfuck.o
 

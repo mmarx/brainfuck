@@ -4,7 +4,8 @@ program brainfuck
 
   integer, parameter :: handle = 42
   character(len=*), parameter :: filename = 'hello.bf'
-  character(len=*), parameter :: program = "++++++++++[>+++++++>++++++++++>+++>+<<<<-]>++.>+.+++++++..+++.>++.<<+++++++++++++++.>.+++.------.--------.>+.>."
+  character(len=*), parameter :: program = "++++++++++[>+++++++>++++++++++>+++&
+&>+<<<<-]>++.>+.+++++++..+++.>++.<<+++++++++++++++.>.+++.------.--------.>+.>."
   character, dimension(:), allocatable :: program_array
   integer :: i, length, state
   character :: dummy
