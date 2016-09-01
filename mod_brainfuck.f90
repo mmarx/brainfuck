@@ -70,16 +70,16 @@ contains
        case('[')
           if(data(data_pointer) == 0) then
              start = instruction_pointer + 1
-             instruction_pointer = first(program(start:program_length), ']')
+             instruction_pointer = start - 1 + matching(program(start:program_length), ']', '[')
           end if
        case(']')
           if(data(data_pointer) /= 0) then
-             instruction_pointer = instruction_pointer + 1 &
-                  - first(program(instruction_pointer:1:-1), '[')
+             start = instruction_pointer - 1
+             instruction_pointer = start + 1 &
+                  - matching(program(start:1:-1), '[', ']')
           end if
        case default
        end select
-
        instruction_pointer = instruction_pointer + 1
        if(instruction_pointer > program_length) exit
     end do
@@ -87,19 +87,26 @@ contains
     write(*, *)
   end subroutine run
 
-  integer pure function first(haystack, needle)
+  integer pure function matching(haystack, needle, antineedle)
     character, dimension(:) :: haystack
-    character :: needle
-    intent(in) :: haystack, needle
+    character :: needle, antineedle
+    intent(in) :: haystack, needle, antineedle
 
-    integer :: i
-    first = -1
+    integer :: i, antis
+    matching = -1
+    antis = 0
 
     do i = lbound(haystack, 1), ubound(haystack, 1)
        if(haystack(i) == needle) then
-          first = i
-          return
+          if(antis == 0) then
+             matching = i
+             return
+          else
+             antis = antis - 1
+          end if
+       else if(haystack(i) == antineedle) then
+          antis = antis + 1
        end if
     end do
-  end function first
+  end function matching
 end module mod_brainfuck
