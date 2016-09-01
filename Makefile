@@ -14,4 +14,5 @@ clean:
 	rm -f *.o *.mod brainfuck
 
 test: brainfuck
-	./brainfuck hello.bf
+	./brainfuck tests/hello.bf
+	./brainfuck tests/issue-#1.bf
