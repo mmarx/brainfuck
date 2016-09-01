@@ -55,13 +55,13 @@ contains
     do
        select case(program(instruction_pointer))
        case('<')
-          data_pointer = data_pointer - 1
+          data_pointer = max(data_pointer - 1, lbound(data, 1))
        case('>')
-          data_pointer = data_pointer + 1
+          data_pointer = min(data_pointer + 1, ubound(data, 1))
        case('-')
-          data(data_pointer) = data(data_pointer) - 1
+          data(data_pointer) = modulo(data(data_pointer) - 1, 256)
        case('+')
-          data(data_pointer) = data(data_pointer) + 1
+          data(data_pointer) = modulo(data(data_pointer) + 1, 256)
        case(',')
           read(*, *) tmp
           data(data_pointer) = ichar(tmp)
