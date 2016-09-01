@@ -70,7 +70,8 @@ contains
        case('[')
           if(data(data_pointer) == 0) then
              start = instruction_pointer + 1
-             instruction_pointer = start - 1 + matching(program(start:program_length), ']', '[')
+             instruction_pointer = start - 1 &
+                  + matching(program(start:program_length), ']', '[')
           end if
        case(']')
           if(data(data_pointer) /= 0) then
